@@ -1,0 +1,6 @@
+# Rebuild docs/ when app sources change, so GitHub Pages (main + /docs)
+# stays in sync on every push. docs/ itself is excluded to avoid loops.
+if git diff --cached --name-only | grep -Eq '^(src/|public/|index\.html|package\.json|package-lock\.json|vite\.config\.js)'; then
+  npm run build:docs
+  git add docs
+fi
